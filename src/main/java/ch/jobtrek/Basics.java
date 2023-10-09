@@ -21,7 +21,16 @@ public class Basics {
      * with letter T. All words should be uppercase and separated by spaces
      */
     public static String strings(String text) {
-        return ""; // Replace with your code here
+        StringBuilder result = new StringBuilder();
+
+        String[] words = text.split(" ");
+
+        for (String word : words) {
+            if (word.length() <= 4 && word.startsWith("T")) {
+                result.append(word.toUpperCase()).append(" ");
+            }
+        }
+        return result.toString().trim(); // Replace with your code here
     }
 
     /**
