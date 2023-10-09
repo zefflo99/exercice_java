@@ -30,21 +30,33 @@ public class Collections {
     }
 
     /**
-     * @param numbers A list of integers
-     * @return A list containing the integers of the original list, without
-     * duplicates, sorted by frequency of occurrence
+     * @param nombres Une liste d'entiers
+     * @return Une liste contenant les entiers de la liste originale, sans les doublons, triée par fréquence d'occurrence
+     * doublons, triés par fréquence d'occurrence
      */
+
     public static List<Integer> frequencyOfApparition(List<Integer> numbers) {
         return List.of(); // Replace with your code here
     }
 
     /**
-     * @param numbers A list, containing list of numbers
-     * @return The sum of all numbers, but all odd numbers should be multiplied by two before sum
-     * Should return zero if there is no numbers
+     * @param numbers Une liste, contenant une liste de nombres
+     * @return La somme de tous les nombres, mais tous les nombres impairs doivent être multipliés par deux avant la somme.
+     * La somme doit retourner zéro s'il n'y a pas de nombres.
      */
     public static Integer sumArrays(List<List<Integer>> numbers) {
-        return 3; // Replace with your code here
+        var sortie = 0;
+        for (var a : numbers) {
+            for (var b:a) {
+                if (b%2==1) {
+                    sortie += 2*b;
+                }
+                else {
+                    sortie += b;
+                }
+            }
+        }
+        return sortie;
     }
 
     /**
