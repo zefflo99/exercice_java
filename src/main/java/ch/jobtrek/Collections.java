@@ -1,18 +1,32 @@
 package ch.jobtrek;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Collections {
 
     /**
-     * @param array An array that contains strings of different lengths
-     * @param size  The string size used to chunk the array
-     * @return An array containing two arrays, one with the stings below and equal
-     * of the size, and another with the stings longer than the size
+     * @param array Un tableau qui contient des chaînes de différentes longueurs
+     * @param size La taille de la chaîne utilisée pour découper le tableau en morceaux
+     * @return Un tableau contenant deux tableaux, l'un avec les chaînes inférieures et égales à la taille, et l'autre avec les chaînes plus longues que la taille, et l'autre avec les chaînes plus longues que la taille.
+     * de la taille, et un autre avec les chaînes plus longues que la taille
      */
     public static List<List<String>> chunkArrayByStringSize(List<String> array, int size) {
-        return List.of(); // Replace with your code here
+
+        var petit = new ArrayList<String>();
+        var grand = new ArrayList<String>();
+
+
+        for (var element : array) {
+
+            if (element.length() <size) {
+                petit.add(element);
+            }else {
+                grand.add(element);
+            }
+        }
+        return List.of(petit, grand); // Remplacer par votre code ici
     }
 
     /**
@@ -26,7 +40,7 @@ public class Collections {
 
     /**
      * @param numbers A list, containing list of numbers
-     * @return The sum of all numbers, but all odd numbers should be multiplied before sum
+     * @return The sum of all numbers, but all odd numbers should be multiplied by two before sum
      * Should return zero if there is no numbers
      */
     public static Integer sumArrays(List<List<Integer>> numbers) {
