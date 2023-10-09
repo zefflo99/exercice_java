@@ -40,6 +40,7 @@ public class Basics {
      * @return A new string where the needle is replaced by newWord
      */
     public static String findAndReplace(String needle, String haystack, String newWord) {
-        return ""; // Replace with your code here
+        String result = haystack.replaceAll(needle, newWord);
+        return result; // Replace with your code here
     }
 }
