@@ -3,6 +3,7 @@ package ch.jobtrek;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Collections {
 
@@ -30,13 +31,29 @@ public class Collections {
     }
 
     /**
-     * @param nombres Une liste d'entiers
+     /* @param nombres Une liste d'entiers
      * @return Une liste contenant les entiers de la liste originale, sans les doublons, triée par fréquence d'occurrence
      * doublons, triés par fréquence d'occurrence
      */
 
     public static List<Integer> frequencyOfApparition(List<Integer> numbers) {
-        return List.of(); // Replace with your code here
+        // Créez une carte pour stocker la fréquence d'occurrence de chaque nombre
+        Map<Integer, Long> frequencyMap = numbers.stream()
+                .collect(Collectors.groupingBy(Integer::intValue, Collectors.counting()));
+
+        // Créez une liste d'entiers en triant par fréquence d'occurrence, puis par valeur
+        List<Integer> result = numbers.stream()
+                .distinct() // Élimine les doublons
+                .sorted((a, b) -> {
+                    int compare = Long.compare(frequencyMap.get(a), frequencyMap.get(b));
+                    return compare != 0 ? compare : Integer.compare(a, b);
+                })
+                .collect(Collectors.toList());
+
+        return result;
+
+
+
     }
 
     /**
