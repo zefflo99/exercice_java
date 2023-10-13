@@ -67,7 +67,9 @@ public class Csv {
      * @return The computed average of the length of all tunnels
      */
     public static double computeAverageLength(List<Tunnelable> tunnels) {
-        return 0; // Replace with your code here
+        return tunnels.stream()
+                .map(Tunnelable::getKilometerLength)
+
     }
 
     /**
