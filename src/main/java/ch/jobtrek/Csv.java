@@ -56,6 +56,7 @@ public class Csv {
     public static List<Tunnelable> tenLongestTunnels(List<Tunnelable> tunnels) {
         return tunnels.stream()
                 .sorted(Comparator.comparing(Tunnelable::getKilometerLength, Comparator.reverseOrder()))
+                //je limite le flux au 10 premier tunnel
                 .limit(10)
                 .toList();
 
