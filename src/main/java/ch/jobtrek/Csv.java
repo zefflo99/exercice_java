@@ -69,7 +69,8 @@ public class Csv {
     public static double computeAverageLength(List<Tunnelable> tunnels) {
         return tunnels.stream()
                 .map(Tunnelable::getKilometerLength)
-
+                .reduce(Double::sum)
+                .get() / tunnels.size();
     }
 
     /**
