@@ -22,6 +22,9 @@ public class Csv {
     public static List<Tunnelable> importCSVfile(URI filePath) {
         try (var file = Files.lines(Paths.get(filePath))){return file.skip(1)
                 .map(line -> line.split(";"))
+                .map(line ->new Tunnel(line[1], Double.parseDouble(line[2]) / 1000, Integer.parseInt(line[3]), line[8]))
+                .collect(Collectors.toList());
+            catch (IOException e) {return List.of();}
 
         }
 
