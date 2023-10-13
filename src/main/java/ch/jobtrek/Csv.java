@@ -20,13 +20,27 @@ public class Csv {
      * @return A List of objects that implements the Tunnelable interface. You need to create this special class.
      */
     public static List<Tunnelable> importCSVfile(URI filePath) {
+        // Permet d'ouvrire un flux de ligne qui vient du CSV
         try (var file = Files.lines(Paths.get(filePath))) {
+            // permet de ignorer le première ligne du fichier
             return file.skip(1)
+                    // je divise chaque ligne en un tableau de chaine en utilisant ;
                     .map(line -> line.split(";"))
-                    .map(line -> new Tunnel(line[1], Double.parseDouble(line[2]) / 1000, Integer.parseInt(line[3]), line[8]))
+                    // je transforme les tableau en des objet tunnel
+                    .map(line -> new Tunnel(
+                            // j'utilise la deuxième colonne pour le nom du tunnel
+                            line[1],
+                            // j'utilise la troisième colonne pour la longueur
+                            Double.parseDouble(line[2]) / 1000,
+                            // j'utilise la quatrième colonne pour l'année de construction
+                            Integer.parseInt(line[3]),
+                            // j'utilise la neuvième colonne pour toute les autre information
+                            line[8]
+                    ))
+                    //je collecte les objets tunnel qui est dans une liste
                     .collect(Collectors.toList());
+            // si il y a une erreur
         } catch (IOException ex) {
-
             return List.of();
         }
 
