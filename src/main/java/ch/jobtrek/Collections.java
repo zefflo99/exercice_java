@@ -1,6 +1,7 @@
 package ch.jobtrek;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,10 +45,7 @@ public class Collections {
         // Créez une liste d'entiers en triant par fréquence d'occurrence, puis par valeur
         List<Integer> result = numbers.stream()
                 .distinct() // Élimine les doublons
-                .sorted((a, b) -> {
-                    int compare = Long.compare(frequencyMap.get(a), frequencyMap.get(b));
-                    return compare != 0 ? compare : Integer.compare(a, b);
-                })
+                .sorted(Comparator.comparingLong((Integer a) -> frequencyMap.get(a)).thenComparingInt(a -> a))
                 .collect(Collectors.toList());
 
         return result;
