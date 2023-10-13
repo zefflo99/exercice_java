@@ -92,7 +92,11 @@ public class Csv {
      * @return The year in which the most tunnels were built
      */
     public static int yearWithBiggestTunnelBuilds(List<Tunnelable> tunnels) {
-        return 0; // Replace with your code here
+        // j'appel tunnelByYears pour obtenir les année et les nombre de tunnels construit
+        return tunnelsByYears(tunnels)
+                // convertit en d'entrée clé valeur
+                .entrySet().stream()
+
     }
 
 }
