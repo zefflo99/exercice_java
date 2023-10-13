@@ -75,10 +75,27 @@ public class Collections {
     }
 
     /**
-     * @param students A hashmap containing students name as key, and student grade as value
-     * @return The student with the best grade in the map
+     * @param students Un hashmap contenant le nom de l'étudiant comme clé et la note de l'étudiant comme valeur
+     * @return L'étudiant avec la meilleure note dans la carte
      */
     public static String bestStudent(Map<String, Integer> students) {
-        return ""; // Replace with your code here
+        if (students.isEmpty()) {
+            return null;
+        }
+
+        String bestStudentName = null;
+        int bestGrade = Integer.MIN_VALUE;
+
+        for (Map.Entry<String, Integer> entry : students.entrySet()) {
+            String studentName = entry.getKey();
+            int studentGrade = entry.getValue();
+
+            if (studentGrade > bestGrade) {
+                bestStudentName = studentName;
+                bestGrade = studentGrade;
+            }
+        }
+
+        return bestStudentName;
     }
 }
