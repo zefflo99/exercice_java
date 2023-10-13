@@ -82,7 +82,9 @@ public class Csv {
      * @return A Map with the year as key and the number of tunnels as value
      */
     public static Map<Integer, Long> tunnelsByYears(List<Tunnelable> tunnels) {
-        return tunnels.stream().collect(Collectors.groupingBy(Tunnelable::getBuildYear, Collectors.counting())); // Replace with your code here
+        // je crée un flux a partir de la liste tunnel
+        return tunnels.stream()
+                .collect(Collectors.groupingBy(Tunnelable::getBuildYear, Collectors.counting()));
     }
 
     /**
