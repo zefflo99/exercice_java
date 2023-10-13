@@ -20,16 +20,18 @@ public class Csv {
      * @return A List of objects that implements the Tunnelable interface. You need to create this special class.
      */
     public static List<Tunnelable> importCSVfile(URI filePath) {
-        try (var file = Files.lines(Paths.get(filePath))){return file.skip(1)
-                .map(line -> line.split(";"))
-                .map(line ->new Tunnel(line[1], Double.parseDouble(line[2]) / 1000, Integer.parseInt(line[3]), line[8]))
-                .collect(Collectors.toList());
-            catch (IOException e) {return List.of();}
+        try (var file = Files.lines(Paths.get(filePath))) {
+            return file.skip(1)
+                    .map(line -> line.split(";"))
+                    .map(line -> new Tunnel(line[1], Double.parseDouble(line[2]) / 1000, Integer.parseInt(line[3]), line[8]))
+                    .collect(Collectors.toList());
+        } catch (IOException ex) {
 
+            return List.of();
         }
 
-        return List.of(); // Replace with your code here
     }
+
 
     /**
      * Sort the list of tunnels provided, and pick de 10 longest
@@ -38,7 +40,11 @@ public class Csv {
      * @return A List containing only the 10 longest tunnels
      */
     public static List<Tunnelable> tenLongestTunnels(List<Tunnelable> tunnels) {
-        return List.of(); // Replace with your code here
+        return tunnels.stream()
+                .sorted(Comparator.comparing(Tunnelable::getKilometerLength, Comparator.reverseOrder()))
+                .limit(10)
+                .toList();
+
     }
 
     /**
