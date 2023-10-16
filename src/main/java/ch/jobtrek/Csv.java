@@ -69,12 +69,12 @@ public class Csv {
     public static double computeAverageLength(List<Tunnelable> tunnels) {
         // je crée un flux a partir de la liste tunnel
         return tunnels.stream()
-                //je transforme chaque tunnel en sa longueur en kilomètre
-                .map(Tunnelable::getKilometerLength)
-                // je réduit le flux en calculant la somme des longueur
-                .reduce(Double::sum)
-                // on divise la somme par les nombre de tunel pour avoir la longueur
-                .get() / tunnels.size();
+                .mapToDouble(Tunnelable::getKilometerLength)
+                // métode pour faire la moyenne
+                .average()
+                // méthode qui retourne une option pour vérifier si la valeur est vide
+                .orElse(0.0);
+
     }
 
     /**
@@ -94,7 +94,7 @@ public class Csv {
     public static int yearWithBiggestTunnelBuilds(List<Tunnelable> tunnels) {
         // j'appel tunnelByYears pour obtenir les année et les nombre de tunnels construit
         return tunnelsByYears(tunnels)
-                // convertit en d'entrée clé valeur
+                // convertir en d'entrée clé valeur
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .get().getKey();
